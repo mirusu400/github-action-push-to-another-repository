@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+sudo apt-get install -y tree
+
 set -e  # if a command fails it stops the execution
 set -u  # script fails if trying to access to an undefined variable
 
@@ -119,11 +121,14 @@ then
 fi
 
 echo "[+] Copying contents of source repository folder $SOURCE_DIRECTORY to folder $TARGET_DIRECTORY in git repo $DESTINATION_REPOSITORY_NAME"
-cp -ra "$SOURCE_DIRECTORY"/. "$CLONE_DIR/$TARGET_DIRECTORY"
+cp -R "$SOURCE_DIRECTORY"/. "$CLONE_DIR/$TARGET_DIRECTORY"
 cd "$CLONE_DIR"
 
 echo "[+] Files that will be pushed"
-ls -la
+tree
+
+echo "[+] Copy result"
+tree "$CLONE_DIR/$TARGET_DIRECTORY"
 
 ORIGIN_COMMIT="https://$GITHUB_SERVER/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
 COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
