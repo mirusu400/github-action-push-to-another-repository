@@ -1,6 +1,5 @@
 #!/bin/sh -l
 
-apt-get install -y tree
 
 set -e  # if a command fails it stops the execution
 set -u  # script fails if trying to access to an undefined variable
@@ -125,10 +124,10 @@ cp -R "$SOURCE_DIRECTORY"/. "$CLONE_DIR/$TARGET_DIRECTORY"
 cd "$CLONE_DIR"
 
 echo "[+] Files that will be pushed"
-tree
+ls -al
 
 echo "[+] Copy result"
-tree "$CLONE_DIR/$TARGET_DIRECTORY"
+ls -al "$CLONE_DIR/$TARGET_DIRECTORY"
 
 ORIGIN_COMMIT="https://$GITHUB_SERVER/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
 COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
