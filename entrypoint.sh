@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-sudo apt-get install -y tree
+apt-get install -y tree
 
 set -e  # if a command fails it stops the execution
 set -u  # script fails if trying to access to an undefined variable
